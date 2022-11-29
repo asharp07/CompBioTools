@@ -1,6 +1,3 @@
-![<Badge Name>](https://img.shields.io/badge/<Badge Text>-<Background Color>?style=for-the-badge&logo=<Icon Name>&logoColor=<Logo Color>)
-
-
 # Computatioanl Bio Tools
 
 ### This is a compilation of computational tools to enhance the analysis technqiues of molecular docking and molecular dynamics simulations. 
