@@ -1,4 +1,4 @@
-# Computatioanl Bio Tools
+# Computational Bio Tools
 
 ### This is a compilation of computational tools to enhance the analysis technqiues of molecular docking and molecular dynamics simulations. 
 #### All scripts written in python3
