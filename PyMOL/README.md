@@ -30,7 +30,7 @@ These ensure a crisp design and utilizing appropriate computational resources to
 
 <code>color TEAL, selection</code>
 
-This command colors the atoms in "selection" teal. For custom colors, I recommend using Adobe Color Wheel. I will be adding more example codes soon - including how to generate great looking membranes, protein-protein interfaces, and more! Below are a few examples of some of my favorite visualizations I've made during grad school. 
+This command colors the atoms in "selection" teal. For custom colors, I recommend using Adobe Color Wheel. I will be adding more example code soon - including how to generate great looking membranes, protein-protein interfaces, and more! Below are a few examples of some of my favorite visualizations I've made during grad school. 
 
 <a href="https://imgur.com/JJYocwP"><img src="https://i.imgur.com/JJYocwP.png" title="source: imgur.com" width="500" /></a>
 <a href="https://imgur.com/vcbCOmK"><img src="https://i.imgur.com/vcbCOmK.png" title="source: imgur.com" width="500" /></a>
