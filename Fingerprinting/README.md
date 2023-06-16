@@ -209,7 +209,7 @@ Calculate the interactions between a protein (or biomolecule, DNA and RNA are su
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Returns a pandas dataframe of all atomic interactions within a 5 angstrom cutoff. <br>
 <br>
 
-##### Example:
+##### Example:<br>
 ```ruby
     protein = 'protein.pdb'
     ligands = [f'ligand_pose{i}.pdb' for i in range(1, 10)]
@@ -232,4 +232,68 @@ Calculate the interactions between a protein (or biomolecule, DNA and RNA are su
 28  TYR-156   Polar Uncharged        4.196831   Polar Uncharged  ...    Polar Uncharged       4.838458               None      11.046769
 29  TRP-158          Aromatic        4.997566   Polar Uncharged  ...    Polar Uncharged       4.780807               None      13.413603
 [30 rows x 19 columns]
+```
+#### <code>cross_analyze(*args)</code>
+
+Cross analyze multiple ligands interactions against the same protein.  <br>
+
+##### Parameters: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **args : *pandas dataframes*** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Any amount of pandas dataframes obtained from using docked_fingerprinting(). <br>
+
+##### Returns: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **C : *pandas dataframe*** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Concatonated group of dataframes for multiple ligands. <br>
+<br>
+
+##### Example:<br>
+```ruby
+    protein = 'protein.pdb'
+    ligands1 = [f'ligand1_pose{i}.pdb' for i in range(1, 10)]
+    ligands2 = [f'ligand2_pose{i}.pdb' for i in range(1, 10)]
+    analysis1 = fingerprinting.Multipose_Docking_Fingerprinting(protein, ligands1)
+    analysis2 = fingerprinting.Multipose_Docking_Fingerprinting(protein, ligands2)
+    df1 = analysis1.docked_fingerprinting(include_nones=True)
+    df2 = analysis2.docked_fingerprinting(include_nones=True)
+    cross_df = fingerprinting.Multipose_Docking_Fingerprinting.cross_analyze(df1, df2)
+    
+    print(cross_df)
+```
+
+##### Output: <br>
+```ruby
+   MET-1  SER-2  ASN-3  LEU-4  SER-5  ALA-6  ARG-7  THR-8  ...  PRO-196  ARG-197  TYR-198  CYS-199  PHE-200  VAL-201  VAL-202  MG-203
+0    0.0    0.0    0.0    0.0    0.0    0.2    0.3    0.5  ...      0.0      0.0      0.0      0.0      0.0      0.0      0.0     0.0
+0    0.0    0.0    0.0    0.0    0.0    0.2    0.1    0.1  ...      0.0      0.0      0.0      0.0      0.0      0.0      0.0     0.0
+
+[2 rows x 203 columns]
+```
+
+#### <code>calc_frequency(input)</code>
+
+Calculate the interactions between a protein (or biomolecule, DNA and RNA are supported) and a ligand (can be a small molecule, peptide, or protein). <br>
+
+##### Parameters: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **input : *pandas dataframe*** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Output dataframe from docked_fingerprinting() or cross_analyze(). <br>
+
+##### Returns: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **C : *pandas dataframe*** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Frequency of interactions per ligand. <br>
+<br>
+
+##### Example:<br>
+```ruby
+    protein = 'protein.pdb'
+    ligands = [f'ligand_pose{i}.pdb' for i in range(1, 10)]
+    analysis = fingerprinting.Multipose_Docking_Fingerprinting(protein, ligands)
+    df = analysis.docked_fingerprinting()
+    print(df)
+```
+##### Output: <br>
+```ruby
+   ALA-6  ARG-7  THR-8  GLY-9  ARG-10  GLN-13  TYR-15  ...  SER-105  GLY-117  CYS-118  GLU-136  ARG-140  TYR-156  TRP-158
+0    0.2    0.3    0.5    0.5     0.2     0.8     0.1  ...      0.4      0.4      0.4      0.2      0.9      0.8      0.8
+
+[1 rows x 30 columns]
 ```
