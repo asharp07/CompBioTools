@@ -288,7 +288,9 @@ Calculate the interactions between a protein (or biomolecule, DNA and RNA are su
     ligands = [f'ligand_pose{i}.pdb' for i in range(1, 10)]
     analysis = fingerprinting.Multipose_Docking_Fingerprinting(protein, ligands)
     df = analysis.docked_fingerprinting()
-    print(df)
+    freq = fingerprinting.Multipose_Docking_Fingerprinting.calc_frequency(df)
+    
+    print(freq)
 ```
 ##### Output: <br>
 ```ruby
